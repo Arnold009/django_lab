@@ -1,38 +1,28 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager,BaseUserManager
 
 
 class Demo(models.Model):
     id = models.AutoField(primary_key=True)
     name =models.CharField(max_length=15)
-    
-    
 
 ################  creating a custom user model instead of using default provided by django ################
 
 class CustomUserManager(UserManager):
     ## method is a private method intended for internal use within the user manager class. It directly creates and saves a user instance to the database.
-    def _create_user(self,email,password,**extra_fields):
+    def create_user(self,email,password,**extra_fields):
         if not email:
             raise ValueError("Email couldn't fetched !!")
         email =  self.normalize_email(email)
         user = self.model(email=email,**extra_fields)
         user.set_password(password)
-        user.save(using=self.db)
+        user.save(using=self._db)
         return user
-
-    ## method is a public method that provides an interface for creating a regular user. It sets default values and then calls the _create_user method to perform the actual creation and saving of the user instance.
-    def create_user(self, email=None,password=None,**extra_fields):
-        extra_fields.setdefault('is_superuser', False )
-        extra_fields.setdefault('is_staff', False )
-        return self._create_user(email=email,password=password,**extra_fields)
-
-    def create_superuser(self,email=None,password=None,**extra_fields):
-        extra_fields.setdefault('is_superuser', True )
-        extra_fields.setdefault('is_staff', True )
-        return self._create_user(email=email,password=password,**extra_fields)
-
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser,PermissionsMixin):
     id = models.AutoField(primary_key=True)
@@ -47,8 +37,7 @@ class User(AbstractBaseUser,PermissionsMixin):
         unique=True
     )
     address = models.ForeignKey('FullAddress' , on_delete=models.CASCADE,blank=True , null=True , related_name="user_fullAddress")
-    is_superuser = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    # is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True )
 
     objects = CustomUserManager()
@@ -59,13 +48,8 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     
     def __str__(self):
-        return f"{self.firstname} {self.lastname}"
-
-    class Meta:
-        verbose_name='User'
-        verbose_name_plural='Users'
-
-
+        # return f"{self.firstname} {self.lastname}"
+        return self.firstname + " " + self.lastname 
 
 
 class FullAddress(models.Model):
