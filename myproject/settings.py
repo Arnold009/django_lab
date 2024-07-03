@@ -80,6 +80,8 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+AUTH_USER_MODEL = "myapp.User"
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

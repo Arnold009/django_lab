@@ -5,4 +5,6 @@ from django.shortcuts import render
 
 def test(request):
     return HttpResponse("hello ")
-    
+
+def testPage(request):
+    return render(request , "test.html")

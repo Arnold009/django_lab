@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager,BaseUserManager
 
-
 class Demo(models.Model):
     id = models.AutoField(primary_key=True)
     name =models.CharField(max_length=15)
@@ -37,7 +36,6 @@ class User(AbstractBaseUser,PermissionsMixin):
         unique=True
     )
     address = models.ForeignKey('FullAddress' , on_delete=models.CASCADE,blank=True , null=True , related_name="user_fullAddress")
-    # is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True )
 
     objects = CustomUserManager()
