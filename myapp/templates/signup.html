@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %} SIgnUp | Join us {% endblock title %}
+{% block css %}
+    .card {
+        border-radius: 1rem;
+        padding: 2rem;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 0.5), rgba(166, 193, 238, 0.5));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(251, 194, 235, 0.5), rgba(166, 193, 238, 0.5));
+        margin: 5rem auto;
+        }
+
+    .card-title {
+        margin-bottom: 2rem;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .form-outline {
+        margin-bottom: 1.5rem;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    form input {
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    form input:focus {
+        border-color: #ff4081;
+        box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .row a {
+        font-size: 0.7rem !important;
+        font-weight: bold;
+    }
+{% endblock css %}
+
+{% block content %}
+<div class="card w-100">
+    <h4 class="card-title">New user | Fill the details</h4>
+    <form method="post" action="" name="signup_form"  >
+        {% csrf_token %}
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4">
+            <div class="col">
+                <div data-mdb-input-init class="form-outline">
+                    <input type="text" id="form6Example1" class="form-control" name="firstname" />
+                    <label class="form-label" for="form6Example1">First name</label>
+                </div>
+            </div>
+            <div class="col">
+                <div data-mdb-input-init class="form-outline">
+                    <input type="text" id="form6Example2" class="form-control" name="lastname" />
+                    <label class="form-label" for="form6Example2">Last name</label>
+            </div>
+            </div>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="form6Example3" class="form-control" name="email" />
+            <label class="form-label" for="form6Example3">Email</label>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="tel" id="form6Example6" class="form-control"  name="phone"/>
+            <label class="form-label" for="form6Example6">Phone</label>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" id="form6Example4" class="form-control" name="password" />
+            <label class="form-label" for="form6Example4">password</label>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" id="form6Example4" class="form-control" name="cpassword" />
+            <label class="form-label" for="form6Example4">Confirm password</label>
+        </div>
+        
+        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">submit</button>
+        <button data-mdb-ripple-init type="reset" class="btn btn-danger btn-block mb-4">reset</button>
+    </form>
+
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row me-auto container ">
+        <div class="col col-md  text-center">
+            <!-- Simple link -->
+            <a href="{% url 'loginpage' %}" class="text-danger text-decoration-underline">Old User?</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

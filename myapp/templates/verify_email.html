@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login | connect with us </title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'user/base.css' %}">
+    <style>
+        body {
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 0.5), rgba(166, 193, 238, 0.5));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(251, 194, 235, 0.5), rgba(166, 193, 238, 0.5));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .form-outline {
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            padding: 20px;
+        }
+
+        form input {
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        form input:focus {
+            border-color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+            background-color: rgba(255, 255, 255, 1);
+        }
+        
+        .row a {
+            font-size: 0.7rem !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h3 class="card-title">verify email</h3>
+        <form method="post" action="" name="">
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" id="form1Example1" class="form-control" />
+                <label class="form-label" for="form1Example1">Email address</label>
+            </div>
+            <!-- Submit button -->
+            <button data-mdb-ripple-init type="submit" class="btn btn-success btn-block">verify</button>
+        </form>
+
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row row-flex me-auto container">
+            <div class="col col-md text-center">
+                <!-- Simple link -->
+                <a href="{% url 'loginpage' %}" class="text-danger text-decoration-underline">login</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MDB -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.umd.min.js"></script>
+</body>
+
+</html>
