@@ -83,3 +83,37 @@ def signup(request):   ## validate the form and create a user record
         return redirect("signuppage")       
 
 
+def login_auth(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        try:
+            user = User.objects.filter(email=email).first()
+            print(user)
+
+            if user is not None:
+                if user is not None and check_password(password,user.password) == True:
+                    print("user is authenticated !!")
+                    request.session["user"] = user.email ## set the session token
+                    request.session.save()  ## save the session explicitly usually done automatic
+                    ## save the user data in cookies
+                    response = redirect("index")
+                    response.set_cookie("email", email ,  secure=True, httponly=True)
+                    
+                    messages.success(request, "User logged in successfully")
+                    return response
+
+
+                else:
+                    messages.error(request , "Invalid credentials !!")
+                    return redirect("loginpage")
+            else:
+                messages.error(request , "User not found")
+                return redirect("loginpage")
+
+        except Exception as e:
+            raise ValueError("An error occured in login process !! " + e)
+
+    else:
+        messages.error(request , "Bad request method")
+        return redirect("loginpage")

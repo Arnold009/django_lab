@@ -12,6 +12,7 @@ urlpatterns = [
     
     
     
+    path("login/", login_auth, name="login"),
     path("signup/", signup, name="signup"),
 ]
 

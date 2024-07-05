@@ -51,7 +51,7 @@
 {% block content %}
     <div class="card">
         <h3 class="card-title">Login</h3>
-        <form method="post" action="" name="login_form"> 
+        <form method="post" action="{% url 'login' %}" name="login_form"> 
             {% csrf_token %}
             <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">

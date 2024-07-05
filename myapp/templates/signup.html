@@ -51,7 +51,7 @@
 {% block content %}
 <div class="card w-100">
     <h4 class="card-title">New user | Fill the details</h4>
-    <form method="post" action="" name="signup_form"  >
+    <form method="post" action="{% url 'signup' %}" name="signup_form"  >
         {% csrf_token %}
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
